@@ -1,27 +1,24 @@
-import { useState } from 'react'
+import ContactCard from './ContactCard'
+import LikeButton from './LikeButton'
 
+type Contact = {
+  id: number
+  name: string
+  email: string
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [isLiked, setIsLiked] = useState(false)
-
-  function handleClick() {
-
-  if (isLiked) {
-    setCount(count - 1)
-  } else {
-    setCount(count + 1)
-  }
-  setIsLiked(!isLiked)
-
-  }
-
+  const contacts: Contact[] = [
+    { id: 1, name: "Alice Tan", email: "alice@example.com"},
+    { id: 2, name: "Bob Lim", email: "bob@example.com"},
+    { id: 3, name: "Charlie Wong", email: "charlie@example.com"}
+  ]
   return (
     <>
-      <h1>Hello, world</h1>
-      <button onClick={handleClick}>
-        {isLiked ? "❤️" : "🤍"} {count} likes
-      </button>
+      <h1>Contacts</h1>
+      {contacts.map((contact) => (
+        <ContactCard key={contact.id} name={contact.name} email={contact.email} />
+      ))}
     </>
   )
 }
